@@ -1,4 +1,4 @@
-        
+
 Vue.component('top-menu', {
     template: `
         <div>
@@ -64,7 +64,6 @@ Vue.component('video-play', {
         }
     },
 })
-
 
 Vue.component('video-title', {
     template: `
@@ -143,9 +142,69 @@ Vue.component('video-title', {
             this.bad.color='blue';
         },
     }
-  
+}) 
+
+
+Vue.component('auto-play', {
+    template: `
+    <div>
+        <section class="last">  
+            <div class="last_title">
+                <span> 다음동영상 </span>   
+                <div>
+                    자동재생
+                    <button :class="{ last_btn : True , rightMove: False }  "  @click="player">
+                        <div class="last_btnsub">aa</div>
+                    </button>
+                </div>
+            </div>
+            <video-list></video-list>
+        </section>
+    <div>
+    `,
+    data: function () {
+        return {
+            True : true,
+            False: false,
+        }
+    },
+    methods : {
+        player (){ // 자동재생 버튼클릭할시
+            this.False=!this.False;
+        },
+    }
 })
 
+
+
+Vue.component('video-list', {
+    template: `
+    <div>
+        <ul v-for="item in playlist" :key="playlist.imge">
+            <li class="item">
+                <div class="item_img"><img :src="item.imge"alt=""></div>
+                <div class="item_text">
+                    <span class="item_title">{{item.title}}</span>
+                    <span class="item_content">{{item.text}}</span>
+                    <span class="item_titi">{{item.count}}</span>          
+                </div>
+            </li>
+        </ul>
+    </div>    
+    `,
+    data: function () {
+        return {
+            playlist:[
+            {imge: 'img/1.JPG', title:'[아시아최초] 눈싸움 기계 이것만 있으면 1인자', text:'최고다윽박EUGBAK', count:'조회수 10.3만회' },
+            {imge: 'img/2.JPG', title:'쇼미더머니 파이널 무대', text:'Ment Tv', count:'조회수 321.5만회' },
+            {imge: 'img/3.JPG', title:'대한민국 최초 푸스카스!!!!', text:'축박공', count:'조회수 13.9만회' },
+            {imge: 'img/4.JPG', title:'죄송합니다 여러분', text:'보겸보겸', count:'조회수 3.9만회' },
+            {imge: 'img/5.JPG', title:'아스날 VS 애버튼 14R', text:'SPOTV', count:'조회수 50.1만회' },
+            {imge: 'img/6.JPG', title:'장삐쭈 단편', text:'장삐쭈', count:'조회수 123.3만회' },
+            ],
+        }
+    },
+})
 
 
 
