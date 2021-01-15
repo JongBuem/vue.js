@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube_Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/9b79e876aa.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <!--상단메뉴-->
+        <div class="header" v-if="head.number==2"> <!--조건부 렌더링 v-if로 렌더링 상단메뉴 Event-->
+            <div class="header_log">
+                <i class="fab fa-youtube"></i>{{head.text}} 
+            </div> 
+            <div>
+                <i class="fas fa-search" @click="serch"></i> <!--상단 검색이미지 Click Event-->
+                <i class="fas fa-ellipsis-v" @click="hamburgerOpen"></i> <!--상단 햄버거이미지 Click Event-->
+            </div>
+        </div>
+        <!--상단 검색메뉴-->
+        <div class="serchHeader" v-else-if="head.number==1"> <!--조건부 렌더링 v-if로 상단메뉴 Event-->
+            <i class="fas fa-arrow-left" @click="back" ></i> <!--뒤로가기이미지 Click Event-->
+            <input type="text" :placeholder="head.text+'검색'"> <!--mustaches 사용으로 Binding-->
+            <i class="fas fa-search fafa"></i>
+        </div>
+        <!--동영상-->
+        <div class="play">
+            <video controls :src="video.play"></video> <!--video위치 경로 Binding-->
+        </div>
+        <!--햄버거 메뉴-->
+        <div class="hamburger_btn" v-if="hamburger.False==true"> <!--조건부 렌더링 으로 햄버거메뉴 숨기기-->
+            <div><button>설정</button></div>
+            <div><button>재생 설정</button></div>
+            <div><button>YouTube의 내 데이터</button></div>
+            <div><button>의견보내기</button></div>
+            <div><button>도움말</button></div>
+            <div><button>신고</button></div>
+            <div><button @click="hamburgerClose">취소</button></div> <!--Click Event로 햄버거메뉴 숨기기-->
+        </div>
+        <!--동영상 제목-->
+        <div class="info_last">
+            <section> 
+                <div class="data">
+                    <ul class="hash">
+                        <li> #이게 언제야</li>
+                        <li> #허창무</li>
+                        <li> #구승휴</li>
+                        <li> #서주원</li>
+                    </ul>
+                    <div class="title">
+                        <span @click="titleClass" :class="{text: title.False}"><!--Click Event 와 Style Binding 으로 줄바꿈-->
+                            {{title.text}} <!--mustaches 사용-->
+                        </span>
+                        <i class="fas fa-caret-down" @click="titleClass" ></i><!--Click Event 로 줄바꿈-->
+                    </div>
+                        <div class="views">
+                            <span>조회수 12.7만회</span>
+                        </div>
+                </div>
+                <!--채널 버튼메뉴-->
+                    <div class="info">
+                        <ul class="actions">
+                            <i class="fas fa-thumbs-up" @click="goodButton" :style="{color:good.color}">{{good.count}}</i>
+                            <i class="fas fa-thumbs-down" @click="badButton" :style="{color:bad.color}">{{bad.count}}</i>
+                            <i class="fas fa-share">공유</i>
+                            <i class="fas fa-plus">저장</i>
+                            <i class="fab fa-font-awesome-flag">신고</i>
+                        </ul>
+                        <div class="channer">
+                            <div class="channer_data">           
+                                    <img src="img/my.jpg" alt="">
+                                <div class="channer_info">
+                                    <span class="chenner_title">8전트</span>
+                                    <span class="chenner_titi">구독자 43.8만명</span>
+                                </div>
+                            </div>
+                            <div class="gudokButton">
+                                <span v-if="gudok.True" :style="{color : gudok.Gray}" @click="gudokButoon">구독</span><!--Click Event 와 Style Binding-->
+                                <span v-else="gudok.True" :style="{color : gudok.Red}" @click="gudokClose">구독중</span><!--Click Event 와 Style Binding-->
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <!--마지막 메뉴-->
+            <section class="last">  
+                <div class="last_title">
+                    <span> 다음동영상 </span>   
+                    <div>
+                        자동재생
+                        <button :class="autoPlay.classObject"  @click="player"><!--Click Event 로 Class Binding-->
+                            <div class="last_btnsub">aa</div>
+                        </button>
+                    </div>
+                </div>
+                <ul v-for="item in playlist" :key="playlist.imge"><!--조건부 랜더링 으로 반복된 구조를 지움-->
+                    <li class="item">
+                        <div class="item_img"><img :src="item.imge"alt=""></div>
+                        <div class="item_text">
+                            <span class="item_title">{{item.title}}</span>
+                            <span class="item_content">{{item.text}}</span>
+                            <span class="item_titi">{{item.count}}</span>          
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
+

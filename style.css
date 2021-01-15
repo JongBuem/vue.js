@@ -1,0 +1,315 @@
+:root {
+  --iframe-font-size-title: 14px;
+  --iframe-font-size-titi: 13px;
+  --iframe-font-size-rage: 18px;
+  --iframe-font-family: "Proza Libre";
+  --iframe-logo-family: "Oswald";
+  --iframe-blue-color: rgba(0, 0, 255, 0.74);
+  --iframe-gray-color: rgba(0, 0, 0, 0.527);
+  --iframe-dark-gray-color: rgba(0, 0, 0, 0.644);
+  --iframe-light-gray-color: rgba(0, 0, 0, 0.315);
+  --iframe-font-color: rgba(0, 0, 0, 0.925);
+  --iframe-red-color: rgba(255, 0, 0, 0.884);
+  --iframe-padding: 10px;
+  --iframe-margin: 3px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+button,
+button:focus {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: white;
+  font-size: var(--iframe-font-size-rage);
+}
+
+.header {
+  font-family: var(--iframe-logo-family);
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.74);
+  color: white;
+  align-items: center;
+  font-size: 20px;
+}
+
+.header_log {
+  cursor: pointer;
+}
+
+.header i,
+.serchHeader i {
+  cursor: pointer;
+  margin: 5px;
+}
+
+.fa-youtube {
+  color: var(--iframe-red-color);
+  font-size: 25px;
+  margin-right: 0;
+}
+
+.serchHeader {
+  display: flex;
+  padding: 16px;
+  padding-top: 10px;
+  background-color: rgb(255, 255, 255);
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.serchHeader input {
+  width: 80%;
+  height: 20px;
+  border: none;
+  border-bottom: solid 1px gray;
+}
+
+input:focus {
+  outline: none;
+}
+
+.hamburger_btn {
+  position: absolute;
+  width: 50vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hamburger_btn div {
+  padding: 15px 20px;
+  background-color: #ffffff;
+}
+
+.hamburger_btn button {
+  display: flex;
+  align-items: left;
+  width: 100%;
+  font-size: var(--iframe-font-size-title);
+}
+
+video {
+  text-align: center;
+  background-color: black;
+  text-align: center;
+  border: solid black;
+  width: 100%;
+  height: 100%;
+  max-height: 300px;
+}
+
+.play {
+  position: sticky;
+  top: 0;
+}
+
+.data {
+  padding: var(--iframe-padding);
+  margin: var(--iframe-margin);
+}
+
+.data .hash {
+  display: flex;
+  color: var(--iframe-blue-color);
+  margin-bottom: var(--iframe-margin);
+  font-size: small;
+}
+
+.data .hash li {
+  margin-right: var(--iframe-margin);
+}
+
+.data .title {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.data .title span {
+  font-size: var(--iframe-font-size-rage);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  margin-right: var(--iframe-margin);
+}
+
+.data .title i {
+  height: 100%;
+}
+
+.data .views span {
+  font-size: var(--iframe-font-size-titi);
+  color: var(--iframe-gray-color);
+}
+
+.info .actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: var(--iframe-padding);
+  margin-top: 10px;
+}
+
+.info .actions i {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: var(--iframe-font-size-rage);
+  color: var(--iframe-gray-color);
+  font-size: var(--iframe-font-size-title);
+  cursor: pointer;
+}
+
+.info .channer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--iframe-light-gray-color);
+  border-bottom: 1px solid var(--iframe-light-gray-color);
+  padding: var(--iframe-padding);
+}
+
+.info .channer .channer_data {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.info .channer .channer_data .channer_info {
+  display: flex;
+  flex-direction: column;
+}
+.info .channer .channer_data .channer_info .chenner_title {
+  font-size: var(--iframe-font-size-title);
+}
+.info .channer .channer_data .channer_info .chenner_titi {
+  font-size: var(--iframe-font-size-titi);
+  color: var(--iframe-gray-color);
+}
+
+.info .channer .channer_data img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: var(--iframe-margin);
+}
+
+.info .channer .gudokButton {
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: var(--iframe-font-size-title);
+}
+
+.last {
+  padding: var(--iframe-padding);
+}
+
+.last .last_title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.last .last_btn {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: var(--iframe-light-gray-color);
+  width: 40px;
+  text-align: left;
+}
+
+.last .last_btn .last_btnsub {
+  display: inline;
+  border-radius: 50%;
+  background-color: var(--iframe-gray-color);
+  color: rgba(24, 23, 22, 0.068);
+  width: 100%;
+}
+
+.last .item {
+  display: flex;
+  margin-top: var(--iframe-padding);
+}
+
+.last .item_text {
+  display: flex;
+  flex-direction: column;
+}
+
+.last .item .item_text {
+  flex: 1 65%;
+  margin: var(--iframe-margin);
+}
+
+.last .item .item_img {
+  flex: 1 35%;
+  margin-top: var(--iframe-margin);
+}
+
+.last img {
+  width: 100%;
+  height: 100%;
+}
+
+.last .item .item_title {
+  font-size: var(--iframe-font-size-title);
+}
+
+.last .item_content {
+  color: var(--iframe-gray-color);
+  font-size: var(--iframe-font-size-titi);
+}
+
+.last .item .item_titi {
+  font-size: var(--iframe-font-size-titi);
+  color: var(--iframe-gray-color);
+}
+
+.info_last {
+  display: flex;
+  flex-direction: column;
+  margin: var(--iframe-margin);
+}
+
+@media screen and (min-width: 900px) {
+  .info_last {
+    flex-direction: row;
+    margin: var(--iframe-padding);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  header .icons_input {
+    display: none;
+    width: 150px;
+    height: 20px;
+  }
+}
+
+/*동영상 제목 클릭시*/
+.data .title .text {
+  -webkit-line-clamp: 3;
+}
+
+.last .rightMove {
+  text-align: right;
+  background-color: rgba(0, 0, 255, 0.541);
+}
