@@ -1,3 +1,155 @@
+        
+Vue.component('top-menu', {
+    template: `
+        <div>
+            <div class="header" v-if="number==2"> 
+                <div class="header_log">
+                    <i class="fab fa-youtube"></i>{{text}} 
+                </div> 
+                <div>
+                    <i class="fas fa-search" @click="serch"></i>
+                    <i class="fas fa-ellipsis-v" @click="hamburgeropen"></i> 
+                </div>
+            </div>
+            <div class="serchHeader" v-else-if="number==1"> 
+                <i class="fas fa-arrow-left" @click="back" ></i> 
+                <input type="text" :placeholder="text+'검색'"> 
+                <i class="fas fa-search fafa"></i>
+            </div>
+            <div class="hamburger_btn" v-if="False==true"> 
+                <div><button>설정</button></div>
+                <div><button>재생 설정</button></div>
+                <div><button>YouTube의 내 데이터</button></div>
+                <div><button>의견보내기</button></div>
+                <div><button>도움말</button></div>
+                <div><button>신고</button></div>
+                <div><button @click="hamburgerClose">취소</button></div> 
+            </div>
+        </div>
+    `,
+    data: function () {
+        return {
+            count: 0,
+            text : 'YouTube',
+            number: 2,
+            False: false,
+        }
+    },
+    methods : {
+        serch(){  // 검색이미지 클릭시
+            this.number=1;
+        },
+        back(){  // 뒤로가기이미지 클릭시
+            this.number=2; 
+        },
+        hamburgeropen(){ // 햄버거 버튼 클릭시
+            this.False =true;
+        },
+        hamburgerClose(){ // 햄버거 메뉴 '취소' 클릭시
+            this.False =false;
+        },
+    }
+})
+
+Vue.component('video-play', {
+    template: `
+        <div class="play">
+            <video controls :src="play"></video>
+        </div>
+    `,
+    data: function () {
+        return {
+            play: 'video/IMG_0788.MOV',
+            False: false,
+        }
+    },
+})
+
+
+Vue.component('video-title', {
+    template: `
+            <div>
+                <div class="data">
+                    <ul class="hash">
+                        <li> #이게 언제야</li>
+                        <li> #허창무</li>
+                        <li> #구승휴</li>
+                        <li> #서주원</li>
+                    </ul>
+                    <div class="title">
+                        <span @click="titleClass" :class="{text:False}">
+                            {{text}} 
+                        </span>
+                        <i class="fas fa-caret-down" @click="titleClass" ></i>
+                    </div>
+                        <div class="views">
+                            <span>조회수 12.7만회</span>
+                        </div>
+                </div>
+                <div class="info">
+                    <ul class="actions">
+                        <i class="fas fa-thumbs-up" @click="goodButton" :style="{color:color}">{{count}}</i>
+                        <i class="fas fa-thumbs-down" @click="badButton" :style="{color:color}">{{count}}</i>
+                        <i class="fas fa-share">공유</i>
+                        <i class="fas fa-plus">저장</i>
+                        <i class="fab fa-font-awesome-flag">신고</i>
+                    </ul>
+                    <div class="channer">
+                        <div class="channer_data">           
+                                <img src="img/my.jpg" alt="">
+                            <div class="channer_info">
+                                <span class="chenner_title">8전트</span>
+                                <span class="chenner_titi">구독자 43.8만명</span>
+                            </div>
+                        </div>
+                        <div class="gudokButton">
+                            <span v-if="True" :style="{color : Gray}" @click="gudokButoon">구독</span>
+                            <span v-else="True" :style="{color : Red}" @click="gudokClose">구독중</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    `,      
+    data: function () {
+        return {
+            False:false,
+            True:true,
+            Gray:'gray', 
+            Red:'red', 
+            count:0,
+            color:'gray', 
+            text: '승모씨와 임모씨가 술먹고?? 화제의 인물! 저기 누어있는 사람은 누구?!! 올해 주모상, 8전트 월드베스트 인간 제조기',      
+        }
+    },methods : {
+        titleClass(){ // 제목과 화살표 버튼 클릭시
+            this.False = !this.False;   
+        },
+        gudokButoon(){ // 구독할시
+            this.True=!this.True; // True 변경으로 '구독중' 노출
+        },
+        gudokClose(){ // 구독을 취소할시                                  
+            if (confirm("구독을 취소 하시겠습니까?")==true) {//팝업창으로 true와 false을 부여
+                this.True = true;                       
+            } else {
+                this.True = false;     
+            }
+        },
+        goodButton(){
+            this.good.count++;
+            this.good.color='blue';
+        },
+        badButton(){
+            this.bad.count++;
+            this.bad.color='blue';
+        },
+    }
+  
+})
+
+
+
+
+
 
 const vm = new Vue({			
     el: '#app',			
@@ -83,3 +235,4 @@ const vm = new Vue({
             },
         },
 })
+
