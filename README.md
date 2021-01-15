@@ -3,6 +3,8 @@
 홈페이지주소 : [https://jongbuem.github.io/vue.js/](https://jongbuem.github.io/vue.js/)
 
 # 중간보고
+5개의 컴포넌트로 나누기
+
 ```HTML
 <!DOCTYPE html>
 <html lang="en">
