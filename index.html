@@ -11,17 +11,22 @@
     <script src="main.js" defer></script>
 </head>
 <body>
-    <!-- 레이아웃 안의 내용이 컴포넌트이다. 컴포넌트바깥에 레이아웃이 있다-->
+    <!--레이아웃의 내용이 컴포넌트이기 때문에, 
+        레이아웃 안의 내용이 컴포넌트여야한다-->
     <div id="app">
         <div class="top_menu_layout">
             <top-menu></top-menu>
         </div>
-        <div class="video_layout">
+        <div class="video_play_layout">
             <video-play></video-play>
         </div>
-        <div class="video_info_layout">
-            <video-info></video-info>
-            <video-list></video-list>
+        <div class="video_info_group">
+            <div class="video_info_layout">
+                <video-info></video-info>
+            </div>
+            <div class="video_list_layout">
+                <video-list></video-list>
+            </div>
         </div>
     </div>
 </body>

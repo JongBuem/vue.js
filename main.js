@@ -1,6 +1,4 @@
 
-// 전역으로 컴포넌트를 등록하여 다른 vue인스턴스에서도 사용이가능
-// data를 retrun 하는 이유는 주소가 넘어가서 컴포넌트가 사용될때마다 데이터가 변경되면 모든데이터가 업데이트되기 때문에
 Vue.component('top-menu', {//상단메뉴 컴포넌트
     template: `
         <div>
@@ -63,7 +61,7 @@ Vue.component('video-play', {// 동영상 컴포넌트
     },
 })
 
-Vue.component('video-info', {// 동영상 제목
+Vue.component('video-info', {// 현재 동영상 내용 컴포넌트
     template: `
         <div>
             <div class="data">
@@ -79,9 +77,9 @@ Vue.component('video-info', {// 동영상 제목
                     </span>
                     <i class="fas fa-caret-down" @click="titleClass" ></i>
                 </div>
-                    <div class="views">
-                        <span>조회수 12.7만회</span>
-                    </div>
+                <div class="views">
+                    <span>조회수 12.7만회</span>
+                </div>
             </div>
             <div class="info">
                 <ul class="actions">
@@ -122,27 +120,27 @@ Vue.component('video-info', {// 동영상 제목
             this.False = !this.False;   
         },
         gudokButoon(){ // 구독할시
-            this.True=!this.True; // True 변경으로 '구독중' 노출
+            this.True=!this.True;
         },
         gudokClose(){ // 구독을 취소할시                                  
-            if (confirm("구독을 취소 하시겠습니까?")==true) {//팝업창으로 true와 false을 부여
+            if (confirm("구독을 취소 하시겠습니까?")==true) {
                 this.True = true;                       
             } else {
                 this.True = false;     
             }
         },
-        goodButton(){
+        goodButton(){ // 좋아요버튼 클릭시
             this.good.count++;
             this.good.color='blue';
         },
-        badButton(){
+        badButton(){ // 싫어요버튼 클릭시
             this.bad.count++;
             this.bad.color='blue';
         },
     }
 }) 
 
-Vue.component('video-list', { //비디로 리스트 정보 컴포넌트
+Vue.component('video-list', { //동영상 리스트 컴포넌트
     template: `
         <div class="last">  
             <div class="last_title">
@@ -154,8 +152,8 @@ Vue.component('video-list', { //비디로 리스트 정보 컴포넌트
                     </button>
                 </div>
             </div>
-            <div>
-            <video-list-info></video-list-info>
+            <div class="video_list_info_layout">
+                <video-list-info></video-list-info>
             </div>
         </div>
     `,
@@ -172,7 +170,7 @@ Vue.component('video-list', { //비디로 리스트 정보 컴포넌트
     }
 })
 
-Vue.component('video-list-info', { // 동영상 리스트의 내용
+Vue.component('video-list-info', { // 동영상 리스트의 내용 컴포넌트
     template: `
         <div>
             <ul v-for="item in videoInfo" :key="videoInfo.imge">
@@ -189,7 +187,7 @@ Vue.component('video-list-info', { // 동영상 리스트의 내용
     `,
     data () {
         return {
-            videoInfo:[ // 동영상 리스트의 자세한 내용
+            videoInfo:[ // 동영상 리스트의 내용
             {imge: 'img/1.JPG', title:'[아시아최초] 눈싸움 기계 이것만 있으면 1인자', text:'최고다윽박EUGBAK', count:'조회수 10.3만회' },
             {imge: 'img/2.JPG', title:'쇼미더머니 파이널 무대', text:'Ment Tv', count:'조회수 321.5만회' },
             {imge: 'img/3.JPG', title:'대한민국 최초 푸스카스!!!!', text:'축박공', count:'조회수 13.9만회' },

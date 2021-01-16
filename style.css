@@ -117,7 +117,7 @@ video {
   z-index: 1;
 }
 
-.video_layout {
+.video_play_layout {
   position: sticky;
   top: 0;
 }
@@ -285,14 +285,14 @@ video {
   color: var(--iframe-gray-color);
 }
 
-.info_last {
+.video_info_group {
   display: flex;
   flex-direction: column;
   margin: var(--iframe-margin);
 }
 
 @media screen and (min-width: 900px) {
-  .video_info_layout {
+  .video_info_group {
     flex-direction: row;
     margin: var(--iframe-padding);
   }
