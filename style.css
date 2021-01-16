@@ -117,7 +117,7 @@ video {
   z-index: 1;
 }
 
-.play {
+.video_layout {
   position: sticky;
   top: 0;
 }
@@ -292,7 +292,7 @@ video {
 }
 
 @media screen and (min-width: 900px) {
-  .info_last {
+  .video_info_layout {
     flex-direction: row;
     margin: var(--iframe-padding);
   }

@@ -54,11 +54,7 @@ Vue.component('top-menu', {//상단메뉴 컴포넌트
 })
 
 Vue.component('video-play', {// 동영상 컴포넌트
-    template: `
-        <div class="play">
-            <video controls :src="play"></video>
-        </div>
-    `,
+    template: `<video controls :src="play"></video>`,
     data () {
         return {
             play: 'video/IMG_0788.MOV',
@@ -67,58 +63,58 @@ Vue.component('video-play', {// 동영상 컴포넌트
     },
 })
 
-Vue.component('video-title', {// 동영상 제목
+Vue.component('video-info', {// 동영상 제목
     template: `
-            <div>
-                <div class="data">
-                    <ul class="hash">
-                        <li> #이게 언제야</li>
-                        <li> #허창무</li>
-                        <li> #구승휴</li>
-                        <li> #서주원</li>
-                    </ul>
-                    <div class="title">
-                        <span @click="titleClass" :class="{text:False}">
-                            {{text}} 
-                        </span>
-                        <i class="fas fa-caret-down" @click="titleClass" ></i>
-                    </div>
-                        <div class="views">
-                            <span>조회수 12.7만회</span>
-                        </div>
+        <div>
+            <div class="data">
+                <ul class="hash">
+                    <li> #이게 언제야</li>
+                    <li> #허창무</li>
+                    <li> #구승휴</li>
+                    <li> #서주원</li>
+                </ul>
+                <div class="title">
+                    <span @click="titleClass" :class="{text:False}">
+                        {{text}} 
+                    </span>
+                    <i class="fas fa-caret-down" @click="titleClass" ></i>
                 </div>
-                <div class="info">
-                    <ul class="actions">
-                        <i class="fas fa-thumbs-up" @click="goodButton" :style="{color:color}">{{count}}</i>
-                        <i class="fas fa-thumbs-down" @click="badButton" :style="{color:color}">{{count}}</i>
-                        <i class="fas fa-share">공유</i>
-                        <i class="fas fa-plus">저장</i>
-                        <i class="fab fa-font-awesome-flag">신고</i>
-                    </ul>
-                    <div class="channer">
-                        <div class="channer_data">           
-                                <img src="img/my.jpg" alt="">
-                            <div class="channer_info">
-                                <span class="chenner_title">8전트</span>
-                                <span class="chenner_titi">구독자 43.8만명</span>
-                            </div>
-                        </div>
-                        <div class="gudokButton">
-                            <span v-if="True" :style="{color : Gray}" @click="gudokButoon">구독</span>
-                            <span v-else="True" :style="{color : Red}" @click="gudokClose">구독중</span>
-                        </div>
+                    <div class="views">
+                        <span>조회수 12.7만회</span>
                     </div>
-                </div>
             </div>
+            <div class="info">
+                <ul class="actions">
+                    <i class="fas fa-thumbs-up" @click="goodButton" :style="{color:color}">{{count}}</i>
+                    <i class="fas fa-thumbs-down" @click="badButton" :style="{color:color}">{{count}}</i>
+                    <i class="fas fa-share">공유</i>
+                    <i class="fas fa-plus">저장</i>
+                    <i class="fab fa-font-awesome-flag">신고</i>
+                </ul>
+                <div class="channer">
+                    <div class="channer_data">           
+                            <img src="img/my.jpg" alt="">
+                        <div class="channer_info">
+                            <span class="chenner_title">8전트</span>
+                            <span class="chenner_titi">구독자 43.8만명</span>
+                        </div>
+                    </div>
+                    <div class="gudokButton">
+                        <span v-if="True" :style="{color : Gray}" @click="gudokButoon">구독</span>
+                        <span v-else="True" :style="{color : Red}" @click="gudokClose">구독중</span>
+                    </div>
+                </div>  
+            </div>
+        </div>
     `,      
     data () {
         return {
             False:false,
             True:true,
-            Gray:'gray', 
-            Red:'red', 
             count:0,
             color:'gray', 
+            Gray:'gray', 
+            Red:'red', 
             text: '승모씨와 임모씨가 술먹고?? 화제의 인물! 저기 누어있는 사람은 누구?!! 올해 주모상, 8전트 월드베스트 인간 제조기',      
         }
     },methods : {
@@ -146,10 +142,9 @@ Vue.component('video-title', {// 동영상 제목
     }
 }) 
 
-Vue.component('auto-play', { //자동플레이 버튼
+Vue.component('video-list', { //비디로 리스트 정보 컴포넌트
     template: `
-    <div>
-        <section class="last">  
+        <div class="last">  
             <div class="last_title">
                 <span> 다음동영상 </span>   
                 <div>
@@ -159,9 +154,10 @@ Vue.component('auto-play', { //자동플레이 버튼
                     </button>
                 </div>
             </div>
-            <video-list></video-list> 
-        </section>
-    <div>
+            <div>
+            <video-list-info></video-list-info>
+            </div>
+        </div>
     `,
     data () {
         return {
@@ -176,24 +172,24 @@ Vue.component('auto-play', { //자동플레이 버튼
     }
 })
 
-Vue.component('video-list', { // 동영상 리스트를 자동플레이 버튼에 삽입
+Vue.component('video-list-info', { // 동영상 리스트의 내용
     template: `
-    <div>
-        <ul v-for="item in playlist" :key="playlist.imge">
-            <li class="item">
-                <div class="item_img"><img :src="item.imge"alt=""></div>
-                <div class="item_text">
-                    <span class="item_title">{{item.title}}</span>
-                    <span class="item_content">{{item.text}}</span>
-                    <span class="item_titi">{{item.count}}</span>          
-                </div>
-            </li>
-        </ul>
-    </div>    
+        <div>
+            <ul v-for="item in videoInfo" :key="videoInfo.imge">
+                <li class="item">
+                    <div class="item_img"><img :src="item.imge"alt=""></div>
+                    <div class="item_text">
+                        <span class="item_title">{{item.title}}</span>
+                        <span class="item_content">{{item.text}}</span>
+                        <span class="item_titi">{{item.count}}</span>          
+                    </div>
+                </li>
+            </ul>
+        </div>    
     `,
     data () {
         return {
-            playlist:[
+            videoInfo:[ // 동영상 리스트의 자세한 내용
             {imge: 'img/1.JPG', title:'[아시아최초] 눈싸움 기계 이것만 있으면 1인자', text:'최고다윽박EUGBAK', count:'조회수 10.3만회' },
             {imge: 'img/2.JPG', title:'쇼미더머니 파이널 무대', text:'Ment Tv', count:'조회수 321.5만회' },
             {imge: 'img/3.JPG', title:'대한민국 최초 푸스카스!!!!', text:'축박공', count:'조회수 13.9만회' },
