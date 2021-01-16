@@ -2,61 +2,250 @@
 
 홈페이지주소 : [https://jongbuem.github.io/vue.js/](https://jongbuem.github.io/vue.js/)
 
-## **지시 업무**
+# 중간보고
+5개의 컴포넌트로 나누기
 
-- 작성된 유튜브 페이지 vue.js로 다시작성
-- 조건부 렌더링사용 [ v-if, v-for, v-show ]
-- 바인딩사용 [ v-bind or : ]
-- 템플릿 문법 [ 속성, 디렉티브, 동적 전달인자, 약어, 수식어 ]
-- vue 인스턴스는 하나로만 작성
-- 주석은 소스옆에 붙이거나 위줄에 작성
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/9b79e876aa.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <top-menu></top-menu>
+        <div class="aa"><video-play></video-play></div>
+        <div class="info_last">
+            <video-title></video-title>
+            <auto-Play></auto-Play>
+        </div>
+    
+    </div>
 
----
-
-## **Vue.js로 작성한 이벤트입니다.**
-
-![캡처](https://user-images.githubusercontent.com/75786010/104661378-c23d8300-570b-11eb-9941-6f0d6b332f1b.JPG)
-
----
-
-## **코드작성 부분 ( 사진순서: HTML - Vue.js )**
-
-### **1. 검색버튼 이벤트**
-
-> v-if를 사용하여 검색버튼 클릭시 상단메뉴가 검색메뉴와 바뀌게 하였습니다.
-> ![해더메뉴](https://user-images.githubusercontent.com/75786010/104661788-a5557f80-570c-11eb-91ab-e2b89518a038.jpg) > ![해더vue](https://user-images.githubusercontent.com/75786010/104661872-dafa6880-570c-11eb-8079-f4c3ff37d740.jpg) > ![해더vue2](https://user-images.githubusercontent.com/75786010/104662028-39bfe200-570d-11eb-903b-3e3ded36b198.jpg)
-
-<br>
-
-### **2. 햄버거버튼 이벤트**
-
-> v-if를 사용하여 햄버거버튼 클릭시 새로운메뉴가 등장하는 이벤트 입니다.
-> ![햄버거html](https://user-images.githubusercontent.com/75786010/104662121-712e8e80-570d-11eb-9e5f-c0fa4a55b90c.jpg) > ![햄버거vue1](https://user-images.githubusercontent.com/75786010/104662195-9ae7b580-570d-11eb-80d1-a31d62627b0f.jpg) > ![햄버거vue2](https://user-images.githubusercontent.com/75786010/104662197-9d4a0f80-570d-11eb-801a-9c967c15e7be.jpg)
-
-<br>
-
-### **3. 동영상 제목**
-
-> 클래스 바인딩으로 동영상제목이나 화살표버튼 클릭시 줄수가 한줄에서 세줄로 바꾸었습니다.
-> ![동영상 제목html](https://user-images.githubusercontent.com/75786010/104662370-0762b480-570e-11eb-8135-9cb10a91a3f5.jpg) > ![동영사 제목vue1](https://user-images.githubusercontent.com/75786010/104662377-0893e180-570e-11eb-8c6d-ba458f769124.jpg) > ![동영상 제목vue3](https://user-images.githubusercontent.com/75786010/104662379-092c7800-570e-11eb-9678-d589d68015f1.jpg)
+    
+   
+</body>
+</html>
+```
 
 <br>
 
-### **4. 구독 버튼**
+```js
+// 전역으로 컴포넌트를 등록하여 다른 vue인스턴스에서도 사용이가능
+// data를 retrun 하는 이유는 주소가 넘어가서 컴포넌트가 사용될때마다 데이터가 변경되면 모든데이터가 업데이트되기 때문에
+Vue.component('top-menu', {//상단메뉴 컴포넌트
+    template: `
+        <div>
+            <div class="header" v-if="number==2"> 
+                <div class="header_log">
+                    <i class="fab fa-youtube"></i>{{text}} 
+                </div> 
+                <div>
+                    <i class="fas fa-search" @click="serch"></i>
+                    <i class="fas fa-ellipsis-v" @click="hamburgeropen"></i> 
+                </div>
+            </div>
+            <div class="serchHeader" v-else-if="number==1"> 
+                <i class="fas fa-arrow-left" @click="back" ></i> 
+                <input type="text" :placeholder="text+'검색'"> 
+                <i class="fas fa-search fafa"></i>
+            </div>
+            <div class="hamburger_btn" v-if="False==true"> 
+                <div><button>설정</button></div>
+                <div><button>재생 설정</button></div>
+                <div><button>YouTube의 내 데이터</button></div>
+                <div><button>의견보내기</button></div>
+                <div><button>도움말</button></div>
+                <div><button>신고</button></div>
+                <div><button @click="hamburgerClose">취소</button></div> 
+            </div>
+        </div>
+    `,
+    data () {
+        return { 
+            count: 0,
+            number: 2,
+            False: false,
+            text : 'YouTube',
+        }
+    },
+    methods : {
+        serch(){  // 검색이미지 클릭시
+            this.number=1;
+        },
+        back(){  // 뒤로가기이미지 클릭시
+            this.number=2; 
+        },
+        hamburgeropen(){ // 햄버거 버튼 클릭시
+            this.False =true;
+        },
+        hamburgerClose(){ // 햄버거 메뉴 '취소' 클릭시
+            this.False =false;
+        },
+    }
+})
 
-> 스타일 바인딩과 v-if를 사용하여 버튼 클릭시 구독과 구독중으로 바뀌며, 구독을 취소하면 팝업창으로 다시한번 물어보게하였습니다.
-> ![구독html3](https://user-images.githubusercontent.com/75786010/104662498-51e43100-570e-11eb-95c7-2f17b2537747.jpg) > ![구독vue1](https://user-images.githubusercontent.com/75786010/104662499-53155e00-570e-11eb-9b8e-7ed10b898294.jpg) > ![구독vue3](https://user-images.githubusercontent.com/75786010/104662500-53adf480-570e-11eb-85dd-fee811589afe.jpg)
+Vue.component('video-play', {// 동영상 컴포넌트
+    template: `
+        <div class="play">
+            <video controls :src="play"></video>
+        </div>
+    `,
+    data () {
+        return {
+            play: 'video/IMG_0788.MOV',
+            False: false,
+        }
+    },
+})
 
-<br>
+Vue.component('video-title', {// 동영상 제목
+    template: `
+            <div>
+                <div class="data">
+                    <ul class="hash">
+                        <li> #이게 언제야</li>
+                        <li> #허창무</li>
+                        <li> #구승휴</li>
+                        <li> #서주원</li>
+                    </ul>
+                    <div class="title">
+                        <span @click="titleClass" :class="{text:False}">
+                            {{text}} 
+                        </span>
+                        <i class="fas fa-caret-down" @click="titleClass" ></i>
+                    </div>
+                        <div class="views">
+                            <span>조회수 12.7만회</span>
+                        </div>
+                </div>
+                <div class="info">
+                    <ul class="actions">
+                        <i class="fas fa-thumbs-up" @click="goodButton" :style="{color:color}">{{count}}</i>
+                        <i class="fas fa-thumbs-down" @click="badButton" :style="{color:color}">{{count}}</i>
+                        <i class="fas fa-share">공유</i>
+                        <i class="fas fa-plus">저장</i>
+                        <i class="fab fa-font-awesome-flag">신고</i>
+                    </ul>
+                    <div class="channer">
+                        <div class="channer_data">           
+                                <img src="img/my.jpg" alt="">
+                            <div class="channer_info">
+                                <span class="chenner_title">8전트</span>
+                                <span class="chenner_titi">구독자 43.8만명</span>
+                            </div>
+                        </div>
+                        <div class="gudokButton">
+                            <span v-if="True" :style="{color : Gray}" @click="gudokButoon">구독</span>
+                            <span v-else="True" :style="{color : Red}" @click="gudokClose">구독중</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    `,      
+    data () {
+        return {
+            False:false,
+            True:true,
+            Gray:'gray', 
+            Red:'red', 
+            count:0,
+            color:'gray', 
+            text: '승모씨와 임모씨가 술먹고?? 화제의 인물! 저기 누어있는 사람은 누구?!! 올해 주모상, 8전트 월드베스트 인간 제조기',      
+        }
+    },methods : {
+        titleClass(){ // 제목과 화살표 버튼 클릭시
+            this.False = !this.False;   
+        },
+        gudokButoon(){ // 구독할시
+            this.True=!this.True; // True 변경으로 '구독중' 노출
+        },
+        gudokClose(){ // 구독을 취소할시                                  
+            if (confirm("구독을 취소 하시겠습니까?")==true) {//팝업창으로 true와 false을 부여
+                this.True = true;                       
+            } else {
+                this.True = false;     
+            }
+        },
+        goodButton(){
+            this.good.count++;
+            this.good.color='blue';
+        },
+        badButton(){
+            this.bad.count++;
+            this.bad.color='blue';
+        },
+    }
+}) 
 
-### **5. 자동재생 버튼**
+Vue.component('auto-play', { //자동플레이 버튼
+    template: `
+    <div>
+        <section class="last">  
+            <div class="last_title">
+                <span> 다음동영상 </span>   
+                <div>
+                    자동재생
+                    <button :class="{ last_btn : True , rightMove: False }  "  @click="player">
+                        <div class="last_btnsub">aa</div>
+                    </button>
+                </div>
+            </div>
+            <video-list></video-list> 
+        </section>
+    <div>
+    `,
+    data () {
+        return {
+            True : true,
+            False: false,
+        }
+    },
+    methods : {
+        player (){ // 자동재생 버튼클릭할시
+            this.False=!this.False;
+        },
+    }
+})
 
-> 클래스 바인등을 사용하여 버튼 클릭시 파랑색으로 바뀌게 하였습니다. 클래스 오브젝트생성하여 바인딩을 적용하였습니다.
-> ![자동재생html4](https://user-images.githubusercontent.com/75786010/104662606-9079eb80-570e-11eb-9172-c3dd943b7b3f.jpg) > ![자동재생vue1](https://user-images.githubusercontent.com/75786010/104662607-91ab1880-570e-11eb-861a-06ec80a6753d.jpg) > ![자동재생vue3](https://user-images.githubusercontent.com/75786010/104662608-9243af00-570e-11eb-85f4-bd3c95f8d54e.jpg)
+Vue.component('video-list', { // 동영상 리스트를 자동플레이 버튼에 삽입
+    template: `
+    <div>
+        <ul v-for="item in playlist" :key="playlist.imge">
+            <li class="item">
+                <div class="item_img"><img :src="item.imge"alt=""></div>
+                <div class="item_text">
+                    <span class="item_title">{{item.title}}</span>
+                    <span class="item_content">{{item.text}}</span>
+                    <span class="item_titi">{{item.count}}</span>          
+                </div>
+            </li>
+        </ul>
+    </div>    
+    `,
+    data () {
+        return {
+            playlist:[
+            {imge: 'img/1.JPG', title:'[아시아최초] 눈싸움 기계 이것만 있으면 1인자', text:'최고다윽박EUGBAK', count:'조회수 10.3만회' },
+            {imge: 'img/2.JPG', title:'쇼미더머니 파이널 무대', text:'Ment Tv', count:'조회수 321.5만회' },
+            {imge: 'img/3.JPG', title:'대한민국 최초 푸스카스!!!!', text:'축박공', count:'조회수 13.9만회' },
+            {imge: 'img/4.JPG', title:'죄송합니다 여러분', text:'보겸보겸', count:'조회수 3.9만회' },
+            {imge: 'img/5.JPG', title:'아스날 VS 애버튼 14R', text:'SPOTV', count:'조회수 50.1만회' },
+            {imge: 'img/6.JPG', title:'장삐쭈 단편', text:'장삐쭈', count:'조회수 123.3만회' },
+            ],
+        }
+    },
+})
 
-### **6. 동영상 리스트**
+const vm = new Vue({			
+    el: '#app',			
+})
 
-> 반복적인 구조를 v-for를 사용하여 변경하였습니다.
-> ![반복리스트html4](https://user-images.githubusercontent.com/75786010/104663057-860c2180-570f-11eb-8cf9-55bf23209945.jpg) > ![반복리스트vue2](https://user-images.githubusercontent.com/75786010/104663058-873d4e80-570f-11eb-917b-3e00054166ff.jpg)
-
----
+```
