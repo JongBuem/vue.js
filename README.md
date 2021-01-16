@@ -8,7 +8,7 @@
 - 컴포넌트는 총 5개로 나누어져야한다
 - **레이아웃 안의 내용 (레이아웃이 담고있는 내용)** 이 컴포넌트 여야한다.
 
-![photo_2021-01-16_13-53-06](https://user-images.githubusercontent.com/75786010/104797556-45d99b80-5802-11eb-872a-99efb6249219.jpg)
+![3](https://user-images.githubusercontent.com/75786010/104798005-3f4d2300-5806-11eb-9e73-562c96442740.JPG)
 
 ---
 
