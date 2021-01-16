@@ -2,7 +2,7 @@
 
 홈페이지주소 : [https://jongbuem.github.io/vue.js/](https://jongbuem.github.io/vue.js/)
 
-## **지시 업무**
+## **지시업무**
 
 - vue.js로 다시작성한 유튜브 페이지 를 컴포넌트로 나누어야 한다.
 - 컴포넌트는 총 5개로 나누어져야한다
@@ -14,7 +14,7 @@
 
 ## **수정한 사항**
 
-![1](https://user-images.githubusercontent.com/75786010/104797376-f0e95580-5800-11eb-9139-d7486ee60ff7.JPG)
+![1](https://user-images.githubusercontent.com/75786010/104797797-365b5200-5804-11eb-9231-731144dccbc9.JPG)
 ![2](https://user-images.githubusercontent.com/75786010/104797409-1f673080-5801-11eb-823e-0f0431b3e362.JPG)
 
 ---
